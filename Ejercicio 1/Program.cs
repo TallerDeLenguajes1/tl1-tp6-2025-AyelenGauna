@@ -1,6 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-int numero;
+﻿int numero = 0, longitudNumero;
 string textoNumero;
 bool resultado;
 
@@ -11,21 +9,19 @@ do
 
     resultado = int.TryParse(textoNumero, out numero);
 
-    if (resultado)
+    if (resultado && numero > 0)
     {
-        Console.WriteLine("\nEl texto ingresado es un numero");
+        longitudNumero = textoNumero.Length;
+        string numeroInvertido = "";
+        for (int i = 0; i < longitudNumero; i++)
+        {
+            numeroInvertido = numeroInvertido + textoNumero[(longitudNumero-1)-i];
+        }
+        Console.WriteLine("\nEl texto ingresado es un numero y es mayor a 0");
+        Console.WriteLine($"\nEl número invertido es: {numeroInvertido}");
     }else
     {
-        Console.WriteLine("\nEl texto ingresado NO es un numero\n");
+        Console.WriteLine("\nEl texto ingresado NO es un numero o es menor o igual 0\n");
     }
 
-} while (!resultado);
- 
-if (numero > 0)
-{
-    Console.WriteLine("El numero ingresado es mayor a 0");
-}else
-{
-    Console.WriteLine("El numero ingresado es menor o igual 0");
-    
-}
+} while (!resultado || numero <= 0);
