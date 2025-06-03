@@ -86,4 +86,56 @@ do
 
 } while (!int.TryParse(opcion, out numero) || numero == 1);
 
+// ***** MÁXIMO Y MÍNIMO ENTRE DOS NÚMEROS *****
+
+string numero1S, numero2S;
+int numero1N, numero2N;
+
+Console.WriteLine("\nIngrese dos números para calcular el máximo y el mínimo entre estos");
+
+do
+{
+    Console.WriteLine("\nNúmero 1:");
+    numero1S = Console.ReadLine();
+
+    Console.WriteLine("\nNúmero 2:");
+    numero2S = Console.ReadLine();
+
+    if (int.TryParse(numero1S, out numero1N) && int.TryParse(numero2S, out numero2N) && numero1S != numero2S)
+    {
+
+        int menor, mayor, aux, auxN1 = numero1N, auxN2 = numero2N;
+
+        if (numero1N < numero2N)
+        {
+            while (numero1N != 0)
+            {
+                aux = numero1N;
+                numero1N = numero2N % numero1N;
+                numero2N = aux;
+            }
+            mayor = numero2N;
+        }
+        else
+        {
+            while (numero2N != 0)
+            {
+                aux = numero2N;
+                numero2N = numero1N % numero2N;
+                numero1N = aux;
+            }
+            mayor = numero1N;
+        }
+
+        menor = (auxN1 * auxN2) / mayor;
+
+        Console.WriteLine($"El mayor de {numero1S} y {numero2S} es: {mayor}");
+        Console.WriteLine($"El menor de {numero1S} y {numero2S} es: {menor}");
+    }
+    else
+    {
+        Console.WriteLine("\nUno de los datos ingresados no es válido o los números ingresados son iguales");
+    }
+
+} while (!int.TryParse(numero1S, out numero1N) || !int.TryParse(numero2S, out numero2N) || numero1S == numero2S);
 
