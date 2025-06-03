@@ -380,6 +380,7 @@ FodyWeavers.xsd
 
 # VS Code files for those working on multiple tools
 Ejercicio 1/.vscode/*
+Ejercicio4/.vscode/*
 Proyecto 1/.vscode/*
 .vscode/*
 !.vscode/settings.json
