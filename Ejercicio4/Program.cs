@@ -104,3 +104,79 @@ Console.WriteLine("*** CALCULADORA SIMPLE ***");
     {
         Console.WriteLine($"\n'{palabra}' no aparece en el primer texto\n");
     }
+
+    Console.WriteLine("\n*** CONVERSIÓN ***\n");
+    Console.WriteLine($"Conversión a MAYÚSCULAS del primer texto: {texto1.ToUpper()}\n");
+    Console.WriteLine($"Conversión a MINÚSCULAS del primer texto: {texto1.ToLower()}\n");
+
+    Console.WriteLine("\n*** SEPARANDO POR CARACTERES ***\n");
+    string cadena, cadenaLimpia;
+    Console.Write("Ingresá palabras separadas por guiones (-): ");
+    cadena = Console.ReadLine();
+    cadenaLimpia = cadena.Trim();
+    string[] palabras = cadenaLimpia.Split('-');
+
+    Console.WriteLine("\nPalabras separadas\n");
+    foreach (string palabraSeparada in palabras)
+    {
+        Console.WriteLine($"{palabraSeparada}");
+    }
+
+Console.WriteLine("\nIngrese en formato de cadena la una operación matemática simple que quiere resolver\nPor ej: 24+56");
+string ecuacion;
+char operador = ' ';
+ecuacion = Console.ReadLine();
+
+foreach (char c in ecuacion)
+{
+    if (c == '+' || c == '-' || c == '*' || c == '/')
+    {
+        operador = c;
+        posicion = ecuacion.IndexOf(c);
+        break;
+    }
+}
+
+if (posicion == -1)
+{
+    Console.WriteLine("\nNo se encontró un operador válido.");
+}else
+{
+    string izquierda = ecuacion.Substring(0, posicion).Trim();
+    string derecha = ecuacion.Substring(posicion + 1).Trim();
+
+    int num1 = int.Parse(izquierda);
+    int num2 = int.Parse(derecha);
+
+    int resultado = 0;
+    bool valido = true;
+
+    switch (operador)
+    {
+        case '+':
+            resultado = num1 + num2;
+            break;
+        case '-':
+            resultado = num1 - num2;
+            break;
+        case '*':
+            resultado = num1 * num2;
+            break;
+        case '/':
+            if (num2 == 0)
+            {
+                Console.WriteLine("\nNo se puede dividir por cero.");
+                valido = false;
+            }
+            else
+            {
+                resultado = num1 / num2;
+            }
+            break;
+        }
+
+        if (valido)
+        {
+            Console.WriteLine($"\nResultado: {num1} {operador} {num2} = {resultado}");
+        }
+}
